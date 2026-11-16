@@ -13,6 +13,10 @@ ONNCLOUD is a separate application project. Its goal is to retain only the prove
 - Do not copy XStreaming's home screen, settings screens, menus, or unrelated features.
 - Keep the existing `nick1234-design/onnxcloudgaming` repository separate and untouched.
 
+## Native WebView requirement
+
+ONNCLOUD will retain the same native-backed React Native WebView component used by XStreaming for its Microsoft sign-in flow (`react-native-webview`), including the required XAL callback handoff and cookie/storage behavior. This is distinct from the Nano game-stream pipeline: Nano handles streaming/media/controller functions, while the WebView is part of authentication. See [docs/WEBVIEW_INTEGRATION.md](docs/WEBVIEW_INTEGRATION.md) for the verified source review and implementation gates.
+
 ## Important architecture note
 
 XStreaming's streaming implementation is not a single isolated native library. Authentication/session setup and parts of stream orchestration are implemented in the React Native/TypeScript layer; WebRTC supplies the real-time audio/video transport; Android native code and bundled native libraries provide additional media/input functionality.
