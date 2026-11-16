@@ -31,6 +31,12 @@ jobs:
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
+        with:
+          packages: |
+            platform-tools
+            platforms;android-33
+            build-tools;33.0.0
+          accept-android-sdk-licenses: true
 
       - name: Generate minimal React Native Android project
         run: |
