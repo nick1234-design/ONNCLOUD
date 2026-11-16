@@ -1,0 +1,56 @@
+name: ONNCLOUD Android build
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - '.github/workflows/android-build.yml'
+      - 'README.md'
+      - 'docs/**'
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out ONNCLOUD
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: npm
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v3
+
+      - name: Generate minimal React Native Android project
+        run: |
+          npx --yes @react-native-community/cli@11.3.7 init ONNCLOUD --version 0.72.14 --skip-install
+          cp "$GITHUB_WORKSPACE/app/App.tsx" ONNCLOUD/App.tsx
+          cd ONNCLOUD
+          npm install
+          npm install --save-exact react-native-webview@13.10.5
+
+      - name: Build debug APK
+        working-directory: ONNCLOUD/android
+        run: ./gradlew assembleDebug --no-daemon
+
+      - name: Upload ONNCLOUD debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: ONNCLOUD-debug
+          path: ONNCLOUD/android/app/build/outputs/apk/debug/app-debug.apk
+          if-no-files-found: error
+          retention-days: 14
