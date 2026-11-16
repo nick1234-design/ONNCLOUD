@@ -7,8 +7,6 @@ on:
     paths:
       - 'app/**'
       - '.github/workflows/android-build.yml'
-      - 'README.md'
-      - 'docs/**'
 
 permissions:
   contents: read
@@ -30,7 +28,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: npm
 
       - name: Set up Android SDK
         uses: android-actions/setup-android@v3
