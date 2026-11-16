@@ -29,11 +29,13 @@ XStreaming is licensed under **GNU Affero General Public License v3.0 (AGPL-3.0)
 
 ## Build status
 
-This repository is at the clean-project foundation stage. No installable APK has been produced yet. The next engineering steps are:
+The initial upstream source-structure review is complete and recorded in [docs/ENGINEERING_PLAN.md](docs/ENGINEERING_PLAN.md). The current candidate is XStreaming's Nano Rust/WebRTC engine with its Android JNI, MediaCodec, AudioTrack, and controller-input bridge. This is not yet a validated port. No installable APK has been produced yet.
 
-1. Map the minimum stream, authentication, audio/video, controller, and native dependencies.
+Next steps:
+
+1. Complete the dependency and third-party license inventory for Nano, Xbox authentication, and xCloud session setup.
 2. Create the ONNCLOUD Android/React Native app shell with a distinct application ID and app identity.
-3. Integrate the selected runtime components without importing XStreaming's UI.
+3. Integrate the minimum runtime components without importing XStreaming's UI.
 4. Add a reproducible Android build workflow.
 5. Build, install, and test on the Onn 4K Plus before adding features.
 
