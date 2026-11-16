@@ -31,6 +31,10 @@ For ONNCLOUD, Nano is the first candidate to isolate because its streaming trans
 - Session orchestration: upstream `src/pages/NanoStream.tsx` currently coordinates the view and gamepad state, but its UI must not be copied. ONNCLOUD will implement a small independent session controller around the required bridge API.
 - Xbox authentication/token acquisition is outside the Nano transport itself. The upstream XAL/MSAL and xCloud API logic must be mapped separately and reduced to the minimum required for sign-in, token refresh, title/session discovery, and stream-token delivery.
 
+## Native WebView requirement
+
+A separate source review confirmed that XStreaming's sign-in screen uses `react-native-webview` (React Native 0.72.14; package declaration `^13.10.2`), backed by Android's native WebView. Its login flow enables JavaScript, DOM storage, shared/third-party cookies, and routes the `ms-xal-000000004c20a908:` callback back into the app. Keep this exact native-backed component for ONNCLOUD authentication rather than substituting a custom standalone WebView. The WebView is not the Nano video transport. See [docs/WEBVIEW_INTEGRATION.md](WEBVIEW_INTEGRATION.md) for details and test gates.
+
 ## Keep / replace boundary
 
 ### Candidate to retain or adapt (subject to dependency and license review)
