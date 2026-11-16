@@ -46,3 +46,7 @@ Next steps:
 ## Disclaimer
 
 ONNCLOUD is an independent community project and is not affiliated with, endorsed by, or sponsored by Microsoft or Xbox. Xbox and related marks are the property of their respective owners.
+
+## Phase 1 implementation
+
+The lightweight ONNCLOUD app shell and GitHub Actions Android debug-build workflow are now in the repository. Phase 1 uses React Native 0.72.14 with `react-native-webview` 13.10.5 and provides an Xbox.com/play WebView compatibility test screen. The XAL callback scheme is detected but not yet processed; this is not a completed Xbox sign-in or Nano streaming build. See [docs/PHASE_1_WEBVIEW_SHELL.md](docs/PHASE_1_WEBVIEW_SHELL.md).
