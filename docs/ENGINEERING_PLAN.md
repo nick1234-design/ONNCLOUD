@@ -74,3 +74,8 @@ Primary device: Onn 4K Plus (2 GB RAM). The first successful test target is a st
 ## Licensing
 
 XStreaming is AGPL-3.0. Any upstream code that is copied, adapted, or combined into a covered work must retain applicable copyright/license notices and satisfy the AGPL terms, including source availability obligations when distributing the application. Third-party components may have separate licenses; they must be inventoried individually. This engineering note is not legal advice.
+
+
+## Phase 1 status — WebView shell
+
+Implemented a minimal ONNCLOUD React Native shell with the same `react-native-webview` native component version targeted by XStreaming's patch. The shell tests Xbox.com/play loading, Android TV focus/navigation, cookie/storage settings, and XAL callback detection. The XAL callback is not yet completed and no Nano engine/controller/audio code has been ported. A GitHub Actions workflow now generates the React Native Android project and builds a debug APK artifact. See `docs/PHASE_1_WEBVIEW_SHELL.md`.
