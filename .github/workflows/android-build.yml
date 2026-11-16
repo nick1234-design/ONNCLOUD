@@ -43,14 +43,14 @@ jobs:
           npm install
           npm install --save-exact react-native-webview@13.10.5
 
-      - name: Build debug APK
+      - name: Build standalone release APK with embedded JavaScript
         working-directory: ONNCLOUD/android
-        run: ./gradlew assembleDebug --no-daemon
+        run: ./gradlew assembleRelease --no-daemon
 
-      - name: Upload ONNCLOUD debug APK
+      - name: Upload ONNCLOUD standalone APK
         uses: actions/upload-artifact@v4
         with:
-          name: ONNCLOUD-debug
-          path: ONNCLOUD/android/app/build/outputs/apk/debug/app-debug.apk
+          name: ONNCLOUD-standalone
+          path: ONNCLOUD/android/app/build/outputs/apk/release/app-release.apk
           if-no-files-found: error
           retention-days: 14
